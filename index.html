@@ -11,7 +11,7 @@
       --bg-dark: #1a1a2e;
       --bg-mid: #16213e;
       --bg-light: #0f3460;
-      --card-light: #ffffff;
+      --card-light: #f7f9fc;
       --card-dark: #1a1a2e;
       --accent: #e94560;
       --accent-2: #ff2e63;
@@ -22,19 +22,22 @@
       --success: #34d399;
       --warning: #fbbf24;
       --danger: #f87171;
+      --shadow: rgba(0, 0, 0, 0.4);
     }
 
-    * {
-      box-sizing: border-box;
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      background: radial-gradient(circle at top, rgba(233, 69, 96, 0.14), transparent 30%),
+                  linear-gradient(135deg, var(--bg-dark), var(--bg-mid));
+      color: white;
     }
 
     body {
-      margin: 0;
-      background: radial-gradient(circle at top, rgba(233, 69, 96, 0.15), transparent 30%),
-                  linear-gradient(135deg, var(--bg-dark), var(--bg-mid));
-      color: white;
-      font-family: 'Roboto', sans-serif;
-      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -44,9 +47,9 @@
 
     .app {
       position: relative;
-      width: min(100%, 900px);
-      min-height: 680px;
-      padding: 24px 20px 30px;
+      width: min(100%, 920px);
+      min-height: 720px;
+      padding: 26px 18px 30px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -59,7 +62,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       z-index: 5;
     }
 
@@ -68,7 +71,7 @@
       font-weight: 300;
       letter-spacing: 2px;
       text-transform: uppercase;
-      font-size: clamp(1.1rem, 2vw, 2rem);
+      font-size: clamp(1.2rem, 2vw, 2.1rem);
     }
 
     .stats-row {
@@ -80,8 +83,8 @@
     }
 
     .stat-pill {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 999px;
       padding: 8px 14px;
       font-size: 0.8rem;
@@ -91,11 +94,11 @@
 
     .progress-bar {
       width: min(420px, 80vw);
-      height: 11px;
+      height: 12px;
       background: rgba(22, 33, 62, 0.9);
       border-radius: 8px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.07);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       margin: 12px auto 10px;
     }
 
@@ -111,6 +114,33 @@
       color: var(--muted);
       font-size: 0.95rem;
       letter-spacing: 0.03em;
+      text-align: center;
+    }
+
+    .level-switcher {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .level-btn {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: all 0.2s ease;
+    }
+
+    .level-btn.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-color: transparent;
+      box-shadow: 0 10px 16px rgba(233, 69, 96, 0.25);
     }
 
     .card-scene {
@@ -120,7 +150,7 @@
       perspective: 1000px;
       cursor: pointer;
       margin-top: 12px;
-      z-index: 4;
+      z-index: 6;
     }
 
     .card {
@@ -168,7 +198,7 @@
       position: relative;
       z-index: 1;
       font-family: 'Ma Shan Zheng', cursive;
-      font-size: 150px;
+      font-size: 160px;
       line-height: 1;
       color: var(--bg-dark);
       filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.18));
@@ -177,7 +207,7 @@
     .card-front .meaning {
       position: relative;
       z-index: 1;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: rgba(26,26,46,0.7);
@@ -186,22 +216,22 @@
     .card-back {
       background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
       color: white;
-      border: 2px solid rgba(233, 69, 96, 0.7);
-      transform: rotateY(180deg);
+      border: 2px solid rgba(233, 69, 96, 0.8);
       flex-direction: column;
       gap: 8px;
       padding: 18px;
+      transform: rotateY(180deg);
     }
 
     .pinyin {
-      font-size: clamp(2rem, 3vw, 2.6rem);
+      font-size: clamp(2rem, 3vw, 2.7rem);
       font-weight: 700;
-      color: #f8d7db;
+      color: #fddde2;
       letter-spacing: 0.04em;
     }
 
     .translation {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: #dfe6f0;
       font-weight: 400;
       letter-spacing: 0.08em;
@@ -264,6 +294,81 @@
       display: none !important;
     }
 
+    .status {
+      margin-top: 16px;
+      min-height: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 36px 0 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      background: rgba(13, 16, 34, 0.72);
+      backdrop-filter: blur(6px);
+    }
+
+    .overlay.hidden {
+      display: none !important;
+    }
+
+    .panel {
+      width: min(90%, 520px);
+      background: rgba(14, 22, 39, 0.9);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      padding: 26px 22px;
+      box-shadow: 0 24px 46px rgba(0,0,0,0.35);
+      text-align: center;
+    }
+
+    .panel h3 {
+      margin: 0 0 12px;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .panel p {
+      margin: 10px 0;
+      color: #dfe6f0;
+      line-height: 1.5;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(100px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .score-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 12px 10px;
+    }
+
+    .score-box .label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .score-box .value {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
     .particle {
       position: absolute;
       pointer-events: none;
@@ -310,7 +415,7 @@
 
     @media (max-width: 560px) {
       .app {
-        padding-top: 16px;
+        padding-top: 12px;
       }
 
       .card-scene {
@@ -324,6 +429,10 @@
 
       .action-btn {
         flex: 1 1 140px;
+      }
+
+      .score-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -339,14 +448,16 @@
 
       <div class="level-text">
         Character <span id="charCount">1</span>/<span id="deckTotal">0</span>
-        • Reps: <span id="repCount">0</span>/<span id="maxReps">20</span>
+        • Score: <span id="scoreValue">0</span>
       </div>
 
       <div class="stats-row">
         <div class="stat-pill">Streak: <span id="streakCount">0</span></div>
         <div class="stat-pill">Mastered: <span id="masteredCount">0</span></div>
-        <div class="stat-pill">Level: <span id="levelText">1</span></div>
+        <div class="stat-pill">Best: <span id="bestScore">0</span></div>
       </div>
+
+      <div class="level-switcher" id="levelSwitcher"></div>
     </div>
 
     <div class="card-scene" id="cardScene">
@@ -370,39 +481,90 @@
       <button class="action-btn warning hidden" id="retryBtn">Review</button>
       <button class="action-btn secondary" id="nextBtn">Next</button>
     </div>
+
+    <div id="status" class="status" aria-live="polite"></div>
+
+    <div id="startOverlay" class="overlay">
+      <div class="panel">
+        <h3>Magical Flashcards</h3>
+        <p>Train your memory with repetition, streaks, and level-based practice.</p>
+        <p>Reveal each card, then decide if you remembered it or need a quick review.</p>
+        <button class="action-btn primary" id="startBtn">Start Game</button>
+      </div>
+    </div>
+
+    <div id="completeOverlay" class="overlay hidden">
+      <div class="panel">
+        <h3>Level Complete</h3>
+        <div class="score-grid">
+          <div class="score-box">
+            <span class="label">Score</span>
+            <span id="finalScore" class="value">0</span>
+          </div>
+          <div class="score-box">
+            <span class="label">Streak</span>
+            <span id="finalStreak" class="value">0</span>
+          </div>
+          <div class="score-box">
+            <span class="label">Mastered</span>
+            <span id="finalMastered" class="value">0</span>
+          </div>
+        </div>
+        <button class="action-btn primary" id="nextLevelBtn">Next Level</button>
+      </div>
+    </div>
   </div>
 
   <script>
-    const level1Chars = [
-      { char: '人', pinyin: 'rén', meaning: 'person', english: 'person' },
-      { char: '口', pinyin: 'kǒu', meaning: 'mouth', english: 'mouth' },
-      { char: '大', pinyin: 'dà', meaning: 'big', english: 'big' },
-      { char: '中', pinyin: 'zhōng', meaning: 'middle', english: 'middle' },
-      { char: '小', pinyin: 'xiǎo', meaning: 'small', english: 'small' },
-      { char: '山', pinyin: 'shān', meaning: 'mountain', english: 'mountain' },
-      { char: '日', pinyin: 'rì', meaning: 'sun/day', english: 'sun' },
-      { char: '月', pinyin: 'yuè', meaning: 'moon/month', english: 'moon' },
-      { char: '水', pinyin: 'shuǐ', meaning: 'water', english: 'water' },
-      { char: '火', pinyin: 'huǒ', meaning: 'fire', english: 'fire' },
-      { char: '木', pinyin: 'mù', meaning: 'wood/tree', english: 'tree' },
-      { char: '土', pinyin: 'tǔ', meaning: 'earth', english: 'earth' },
-      { char: '天', pinyin: 'tiān', meaning: 'heaven', english: 'sky' },
-      { char: '地', pinyin: 'dì', meaning: 'earth', english: 'ground' },
-      { char: '门', pinyin: 'mén', meaning: 'door/gate', english: 'door' }
-    ];
+    const levels = {
+      1: [
+        { char: '人', pinyin: 'rén', meaning: 'person', english: 'person' },
+        { char: '口', pinyin: 'kǒu', meaning: 'mouth', english: 'mouth' },
+        { char: '大', pinyin: 'dà', meaning: 'big', english: 'big' },
+        { char: '中', pinyin: 'zhōng', meaning: 'middle', english: 'middle' },
+        { char: '小', pinyin: 'xiǎo', meaning: 'small', english: 'small' },
+        { char: '山', pinyin: 'shān', meaning: 'mountain', english: 'mountain' },
+        { char: '日', pinyin: 'rì', meaning: 'sun/day', english: 'sun' },
+        { char: '月', pinyin: 'yuè', meaning: 'moon/month', english: 'moon' }
+      ],
+      2: [
+        { char: '水', pinyin: 'shuǐ', meaning: 'water', english: 'water' },
+        { char: '火', pinyin: 'huǒ', meaning: 'fire', english: 'fire' },
+        { char: '木', pinyin: 'mù', meaning: 'wood/tree', english: 'tree' },
+        { char: '土', pinyin: 'tǔ', meaning: 'earth', english: 'earth' },
+        { char: '天', pinyin: 'tiān', meaning: 'heaven', english: 'sky' },
+        { char: '地', pinyin: 'dì', meaning: 'earth', english: 'ground' },
+        { char: '门', pinyin: 'mén', meaning: 'door/gate', english: 'door' },
+        { char: '车', pinyin: 'chē', meaning: 'vehicle', english: 'car' },
+        { char: '雨', pinyin: 'yǔ', meaning: 'rain', english: 'rain' },
+        { char: '风', pinyin: 'fēng', meaning: 'wind', english: 'wind' }
+      ],
+      3: [
+        { char: '国', pinyin: 'guó', meaning: 'country', english: 'country' },
+        { char: '家', pinyin: 'jiā', meaning: 'home/family', english: 'family' },
+        { char: '学', pinyin: 'xué', meaning: 'study', english: 'study' },
+        { char: '校', pinyin: 'xiào', meaning: 'school', english: 'school' },
+        { char: '书', pinyin: 'shū', meaning: 'book', english: 'book' },
+        { char: '字', pinyin: 'zì', meaning: 'character', english: 'character' },
+        { char: '语', pinyin: 'yǔ', meaning: 'language', english: 'language' },
+        { char: '文', pinyin: 'wén', meaning: 'language/writing', english: 'writing' },
+        { char: '名', pinyin: 'míng', meaning: 'name', english: 'name' },
+        { char: '话', pinyin: 'huà', meaning: 'speech', english: 'speech' }
+      ]
+    };
 
     const state = {
+      level: 1,
       deck: [],
+      reviewQueue: [],
       currentIndex: 0,
       currentCard: null,
-      repsCompleted: 0,
-      maxReps: 20,
+      score: 0,
       streak: 0,
       mastered: 0,
-      currentLevel: 1,
-      totalDeck: 0,
       revealed: false,
-      masteryMap: new Map()
+      isStarted: false,
+      bestScore: Number(localStorage.getItem('magicalFlashcardsBest') || 0)
     };
 
     const card = document.getElementById('card');
@@ -411,40 +573,91 @@
     const pinyinDisplay = document.getElementById('pinyinDisplay');
     const translationDisplay = document.getElementById('translationDisplay');
     const progressBar = document.getElementById('progressBar');
-    const repCountDisplay = document.getElementById('repCount');
-    const charCountDisplay = document.getElementById('charCount');
+    const scoreValueDisplay = document.getElementById('scoreValue');
+    const repCountDisplay = document.getElementById('charCount');
+    const masteredDisplay = document.getElementById('masteredCount');
+    const streakDisplay = document.getElementById('streakCount');
+    const bestScoreDisplay = document.getElementById('bestScore');
     const deckTotalDisplay = document.getElementById('deckTotal');
-    const streakCountDisplay = document.getElementById('streakCount');
-    const masteredCountDisplay = document.getElementById('masteredCount');
-    const levelTextDisplay = document.getElementById('levelText');
+    const statusEl = document.getElementById('status');
     const revealBtn = document.getElementById('revealBtn');
     const rememberBtn = document.getElementById('rememberBtn');
     const retryBtn = document.getElementById('retryBtn');
     const nextBtn = document.getElementById('nextBtn');
+    const startOverlay = document.getElementById('startOverlay');
+    const completeOverlay = document.getElementById('completeOverlay');
+    const finalScoreEl = document.getElementById('finalScore');
+    const finalStreakEl = document.getElementById('finalStreak');
+    const finalMasteredEl = document.getElementById('finalMastered');
+    const startBtn = document.getElementById('startBtn');
+    const nextLevelBtn = document.getElementById('nextLevelBtn');
+    const levelSwitcher = document.getElementById('levelSwitcher');
 
-    function buildDeck() {
-      state.deck = level1Chars.map((item, index) => ({
-        ...item,
-        mastery: 0,
-        id: index + 1
-      }));
-      state.totalDeck = state.deck.length;
-      deckTotalDisplay.textContent = state.totalDeck;
-      state.currentIndex = 0;
-      state.currentCard = state.deck[0];
-      state.repsCompleted = 0;
-      updateUI();
-      loadCard();
+    function buildLevelButtons() {
+      levelSwitcher.innerHTML = '';
+      Object.keys(levels).forEach(level => {
+        const btn = document.createElement('button');
+        btn.className = 'level-btn' + (Number(level) === state.level ? ' active' : '');
+        btn.textContent = `Level ${level}`;
+        btn.addEventListener('click', () => {
+          state.level = Number(level);
+          buildLevelButtons();
+          startGame();
+        });
+        levelSwitcher.appendChild(btn);
+      });
+    }
+
+    function setStatus(message, isError = false) {
+      statusEl.textContent = message;
+      statusEl.style.color = isError ? '#f87171' : '#b9c5d4';
     }
 
     function getCurrentCard() {
-      return state.deck[state.currentIndex] || state.deck[0];
+      if (state.reviewQueue.length > 0) {
+        return state.reviewQueue[0];
+      }
+      return state.deck[state.currentIndex] || null;
+    }
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function buildDeck() {
+      const baseDeck = levels[state.level].map((item, index) => ({
+        ...item,
+        mastery: 0,
+        id: `${state.level}-${index}`
+      }));
+
+      state.deck = shuffleArray(baseDeck);
+      state.reviewQueue = [];
+      state.currentIndex = 0;
+      state.mastered = 0;
+      deckTotalDisplay.textContent = state.deck.length;
+      repCountDisplay.textContent = '1';
+    }
+
+    function updateStats() {
+      scoreValueDisplay.textContent = state.score;
+      streakDisplay.textContent = state.streak;
+      masteredDisplay.textContent = state.mastered;
+      bestScoreDisplay.textContent = state.bestScore;
+      progressBar.style.width = `${Math.min((state.mastered / state.deck.length) * 100, 100)}%`;
     }
 
     function loadCard() {
       const cardData = getCurrentCard();
-
-      if (!cardData) return;
+      if (!cardData) {
+        finishLevel();
+        return;
+      }
 
       state.currentCard = cardData;
       card.classList.remove('is-flipped', 'fly-away-left', 'fly-away-right', 'fly-away-up');
@@ -460,12 +673,14 @@
       rememberBtn.classList.add('hidden');
       retryBtn.classList.add('hidden');
 
-      charCountDisplay.textContent = state.currentIndex + 1;
-      repCountDisplay.textContent = state.repsCompleted;
-      updateProgress();
+      const currentPosition = state.reviewQueue.length > 0 ? 1 : state.currentIndex + 1;
+      repCountDisplay.textContent = currentPosition;
+      setStatus('Study the character and reveal the answer.');
+      updateStats();
     }
 
     function toggleCard() {
+      if (!state.isStarted) return;
       if (card.classList.contains('fly-away-left') ||
           card.classList.contains('fly-away-right') ||
           card.classList.contains('fly-away-up')) {
@@ -478,86 +693,26 @@
         revealBtn.classList.add('hidden');
         rememberBtn.classList.remove('hidden');
         retryBtn.classList.remove('hidden');
+        setStatus('Did you remember it?');
       }
     }
 
-    function finishRep(success) {
-      if (!state.currentCard) return;
+    function playTone(type) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
 
-      const cardData = state.currentCard;
+      const audioCtx = new AudioCtx();
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
 
-      if (success) {
-        cardData.mastery += 1;
-        state.streak += 1;
-      } else {
-        cardData.mastery = Math.max(0, cardData.mastery - 1);
-        state.streak = 0;
-      }
+      oscillator.type = type === 'success' ? 'triangle' : 'sawtooth';
+      oscillator.frequency.value = type === 'success' ? 660 : 220;
+      gainNode.gain.value = 0.04;
 
-      state.repsCompleted += 1;
-      state.mastered = state.deck.filter(item => item.mastery >= 5).length;
-
-      if (cardData.mastery >= 5) {
-        triggerMagicEffect();
-        setTimeout(() => {
-          moveToNextCard();
-        }, 500);
-      } else {
-        triggerMagicEffect();
-        setTimeout(() => {
-          loadCard();
-        }, 500);
-      }
-
-      updateUI();
-    }
-
-    function moveToNextCard() {
-      if (state.currentIndex < state.deck.length - 1) {
-        state.currentIndex += 1;
-      } else {
-        state.currentIndex = 0;
-      }
-
-      const nextCard = getCurrentCard();
-      if (nextCard) {
-        loadCard();
-      }
-    }
-
-    function nextCharacter() {
-      state.repsCompleted = 0;
-      if (state.currentIndex < state.deck.length - 1) {
-        state.currentIndex += 1;
-      } else {
-        state.currentIndex = 0;
-      }
-      loadCard();
-      updateUI();
-    }
-
-    function updateProgress() {
-      const percent = (state.repsCompleted / state.maxReps) * 100;
-      progressBar.style.width = percent + '%';
-    }
-
-    function updateUI() {
-      repCountDisplay.textContent = state.repsCompleted;
-      charCountDisplay.textContent = state.currentIndex + 1;
-      streakCountDisplay.textContent = state.streak;
-      masteredCountDisplay.textContent = state.mastered;
-      levelTextDisplay.textContent = state.currentLevel;
-
-      const percentage = (state.repsCompleted / state.maxReps) * 100;
-      progressBar.style.width = percentage + '%';
-
-      if (state.repsCompleted >= state.maxReps) {
-        state.currentLevel += 1;
-        state.repsCompleted = 0;
-        setTimeout(() => {
-          nextCharacter();
-        }, 600);
-      }
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + 0.12);
     }
 
     function triggerMagicEffect() {
@@ -572,7 +727,7 @@
     }
 
     function createParticles(x, y) {
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 28; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
         document.body.appendChild(particle);
@@ -588,7 +743,7 @@
         particle.style.top = y + 'px';
 
         const angle = Math.random() * Math.PI * 2;
-        const velocity = Math.random() * 220 + 80;
+        const velocity = Math.random() * 200 + 90;
         const tx = Math.cos(angle) * velocity + 'px';
         const ty = Math.sin(angle) * velocity + 'px';
 
@@ -599,20 +754,107 @@
       }
     }
 
-    revealBtn.addEventListener('click', toggleCard);
-    rememberBtn.addEventListener('click', () => finishRep(true));
-    retryBtn.addEventListener('click', () => finishRep(false));
-    nextBtn.addEventListener('click', () => {
-      if (state.revealed) {
-        finishRep(false);
+    function markCardAsReviewed(cardData, wasCorrect) {
+      if (wasCorrect) {
+        cardData.mastery = Math.min((cardData.mastery || 0) + 1, 5);
+        state.streak += 1;
+        state.score += 10 + (state.streak * 2);
+        state.bestScore = Math.max(state.bestScore, state.score);
+        localStorage.setItem('magicalFlashcardsBest', String(state.bestScore));
+        playTone('success');
+        setStatus('Great job! That character is sticking.');
       } else {
-        moveToNextCard();
+        cardData.mastery = Math.max((cardData.mastery || 0) - 1, 0);
+        state.streak = 0;
+        state.score = Math.max(0, state.score - 4);
+        state.reviewQueue.unshift(cardData);
+        playTone('error');
+        setStatus('Review it again. That one needs another pass.');
       }
+
+      if (cardData.mastery >= 3) {
+        state.mastered += 1;
+      }
+    }
+
+    function moveToNextCard() {
+      const activeCard = state.currentCard;
+      if (activeCard && activeCard.mastery >= 3) {
+        if (state.reviewQueue.includes(activeCard)) {
+          state.reviewQueue = state.reviewQueue.filter(item => item !== activeCard);
+        }
+      }
+
+      if (state.reviewQueue.length > 0) {
+        state.currentCard = state.reviewQueue.shift();
+        return;
+      }
+
+      state.currentIndex = (state.currentIndex + 1) % state.deck.length;
+      const nextCard = state.deck[state.currentIndex];
+      if (nextCard) {
+        state.currentCard = nextCard;
+      }
+    }
+
+    function finishLevel() {
+      completeOverlay.classList.remove('hidden');
+      finalScoreEl.textContent = state.score;
+      finalStreakEl.textContent = state.streak;
+      finalMasteredEl.textContent = state.mastered;
+      setStatus('Level complete! Ready for the next challenge?');
+      state.isStarted = false;
+    }
+
+    function afterAnswer(isCorrect) {
+      if (!state.currentCard) return;
+      const cardData = state.currentCard;
+
+      markCardAsReviewed(cardData, isCorrect);
+      triggerMagicEffect();
+
+      setTimeout(() => {
+        moveToNextCard();
+        loadCard();
+      }, 550);
+    }
+
+    function startGame() {
+      buildDeck();
+      completeOverlay.classList.add('hidden');
+      startOverlay.classList.add('hidden');
+      state.isStarted = true;
+      state.score = 0;
+      state.streak = 0;
+      state.mastered = 0;
+      loadCard();
+      setStatus('Game started. Reveal the card to answer.');
+      updateStats();
+    }
+
+    revealBtn.addEventListener('click', toggleCard);
+    nextBtn.addEventListener('click', () => {
+      if (!state.isStarted) return;
+      if (!state.revealed) {
+        toggleCard();
+        return;
+      }
+      afterAnswer(false);
+    });
+
+    rememberBtn.addEventListener('click', () => afterAnswer(true));
+    retryBtn.addEventListener('click', () => afterAnswer(false));
+    startBtn.addEventListener('click', startGame);
+    nextLevelBtn.addEventListener('click', () => {
+      state.level = Math.min(state.level + 1, Object.keys(levels).length);
+      buildLevelButtons();
+      startGame();
     });
 
     card.addEventListener('click', toggleCard);
 
-    buildDeck();
+    buildLevelButtons();
+    updateStats();
   </script>
 </body>
 </html>

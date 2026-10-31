@@ -1,18 +1,19 @@
 # Magical Chinese Flashcards
 
-A small interactive flashcard game for learning basic Chinese characters with repetition mode, mastery tracking, and animated feedback.
+A playful repetition-based flashcard game for learning basic Chinese characters with score tracking, progressive levels, review behavior, and animated feedback.
 
 ## Features
-- Flip-card learning interface
-- Repetition tracking
-- Mastery progress
-- Streak counter
-- Level progression
-- Particle animation for successful reps
-- Responsive layout
+- Reveal-and-answer flashcard flow
+- Streak and score tracking
+- Level-based progression
+- Review queue for difficult characters
+- Particle magic effects
+- Responsive card layout
+- Best score saved in local storage
 
 ## How to run
-Open `index.html` directly in a browser.
+Open `index.html` in a browser.
 
-## Files
-- `index.html` — main UI and game logic
+## Notes
+- The app is fully client-side and requires no backend.
+- It stores your best score locally in the browser.
